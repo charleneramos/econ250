@@ -338,46 +338,46 @@ aid_raw$district <- aid_raw$district %>% trimws() %>% gsub(" ", "", .)
 aid14 <- aid_raw %>%
     arrange(district) %>%
     filter(year == 2014) %>%
-    mutate(ltransac14 = log(transaction_value),
-           lcommit14 = log(total_commitments),
-           ldisburse14 = log(total_disbursements),
-           lesplit14 = log(total_disbursements)) %>%
-    select(district, ltransac14, lcommit14, ldisburse14, lesplit14)
+    mutate(transac14 = transaction_value,
+           commit14 = total_commitments,
+           disburse14 = total_disbursements,
+           esplit14 = total_disbursements) %>%
+    select(district, transac14, commit14, disburse14, esplit14)
 
 aid15 <- aid_raw %>%
     arrange(district) %>%
     filter(year == 2015) %>%
-    mutate(ltransac15 = log(transaction_value),
-           lcommit15 = log(total_commitments),
-           ldisburse15 = log(total_disbursements),
-           lesplit15 = log(total_disbursements)) %>%
-    select(district, ltransac15, lcommit15, ldisburse15, lesplit15)
+    mutate(transac15 = transaction_value,
+           commit15 = total_commitments,
+           disburse15 = total_disbursements,
+           esplit15 = total_disbursements) %>%
+    select(district, transac15, commit15, disburse15, esplit15)
 
 aid16 <- aid_raw %>%
     arrange(district) %>%
     filter(year == 2016) %>%
-    mutate(ltransac16 = log(transaction_value),
-           lcommit16 = log(total_commitments),
-           ldisburse16 = log(total_disbursements),
-           lesplit16 = log(total_disbursements)) %>%
-    select(district, ltransac16, lcommit16, ldisburse16, lesplit16)
+    mutate(transac16 = transaction_value,
+           commit16 = total_commitments,
+           disburse16 = total_disbursements,
+           esplit16 = total_disbursements) %>%
+    select(district, transac16, commit16, disburse16, esplit16)
 
 aid17 <- aid_raw %>%
     arrange(district) %>%
     filter(year == 2017) %>%
-    mutate(ltransac17 = log(transaction_value),
-           lcommit17 = log(total_commitments),
-           ldisburse17 = log(total_disbursements),
-           lesplit17 = log(total_disbursements)) %>%
-    select(district, ltransac17, lcommit17, ldisburse17, lesplit17)
+    mutate(transac17 = transaction_value,
+           commit17 = total_commitments,
+           disburse17 = total_disbursements,
+           esplit17 = total_disbursements) %>%
+    select(district, transac17, commit17, disburse17, esplit17)
 
 aid  <- reduce(list(df_frame, aid14, aid15, aid16, aid17), left_join, by = 'district')
 
 aid <- aid %>%
-    select(district,ltransac14,ltransac15,ltransac16,ltransac17,
-           lcommit14,lcommit15,lcommit16,lcommit17,
-           ldisburse14,ldisburse15,ldisburse16,ldisburse17,
-           lesplit14,lesplit15,lesplit16,lesplit17)
+    select(district,transac14,transac15,transac16,transac17,
+           commit14,commit15,commit16,commit17,
+           disburse14,disburse15,disburse16,disburse17,
+           esplit14,esplit15,esplit16,esplit17)
 
 df <- right_join(df, aid, by = 'district')
 
@@ -435,11 +435,7 @@ ntl <- reduce(list(ntl14, ntl15, ntl16, ntl17), left_join, by = 'shapeName')
 ntl <- ntl %>%
   select(shapeName, ntl14, ntl15, ntl16, ntl17) %>% 
   rename('district' = shapeName)  %>% 
-  mutate(lntl14 = log(ntl14),
-         lntl15 = log(ntl15),
-         lntl16 = log(ntl16),
-         lntl17 = log(ntl17)) %>% 
-  select(district, lntl14, lntl15, lntl16, lntl17)
+  select(district, ntl14, ntl15, ntl16, ntl17)
 
 rm(ntl14, ntl15, ntl16, ntl17)
 
@@ -448,28 +444,24 @@ rm(ntl14, ntl15, ntl16, ntl17)
 # population density 
 pop14 <- aiddata_raw %>%
   select(shapeName, worldpop_pop_count_1km_mosaic.2014.sum) %>%
-  rename('pop14' = worldpop_pop_count_1km_mosaic.2014.sum) %>%
-  mutate(lpop14 = log(pop14))
+  rename('pop14' = worldpop_pop_count_1km_mosaic.2014.sum) 
 
 pop15 <- aiddata_raw %>%
   select(shapeName, worldpop_pop_count_1km_mosaic.2015.sum) %>%
-  rename('pop15' = worldpop_pop_count_1km_mosaic.2015.sum) %>%
-  mutate(lpop15 = log(pop15))
+  rename('pop15' = worldpop_pop_count_1km_mosaic.2015.sum) 
 
 pop16 <- aiddata_raw %>%
   select(shapeName, worldpop_pop_count_1km_mosaic.2016.sum) %>%
-  rename('pop16' = worldpop_pop_count_1km_mosaic.2016.sum) %>%
-  mutate(lpop16 = log(pop16))
+  rename('pop16' = worldpop_pop_count_1km_mosaic.2016.sum) 
 
 pop17 <- aiddata_raw %>%
   select(shapeName, worldpop_pop_count_1km_mosaic.2017.sum) %>%
-  rename('pop17' = worldpop_pop_count_1km_mosaic.2017.sum) %>%
-  mutate(lpop17 = log(pop17))
+  rename('pop17' = worldpop_pop_count_1km_mosaic.2017.sum) 
 
 pop <- reduce(list(pop14, pop15, pop16, pop17), left_join, by = 'shapeName')
 
 pop <- pop %>%
-  select(shapeName, lpop14, lpop15, lpop16, lpop17) %>% 
+  select(shapeName, pop14, pop15, pop16, pop17) %>% 
   rename('district' = shapeName)
 
 rm(pop14, pop15, pop16, pop17)
@@ -479,28 +471,24 @@ rm(pop14, pop15, pop16, pop17)
 # rainfall 
 rain14 <- aiddata_raw %>%
   select(shapeName, udel_precip_v501_sum.2014.sum) %>%
-  rename('rain14' = udel_precip_v501_sum.2014.sum) %>%
-  mutate(lrain14 = log(rain14))
+  rename('rain14' = udel_precip_v501_sum.2014.sum)
 
 rain15 <- aiddata_raw %>%
   select(shapeName, udel_precip_v501_sum.2015.sum) %>%
-  rename('rain15' = udel_precip_v501_sum.2015.sum) %>%
-  mutate(lrain15 = log(rain15))
+  rename('rain15' = udel_precip_v501_sum.2015.sum)
 
 rain16 <- aiddata_raw %>%
   select(shapeName, udel_precip_v501_sum.2016.sum) %>%
-  rename('rain16' = udel_precip_v501_sum.2016.sum) %>%
-  mutate(lrain16 = log(rain16))
+  rename('rain16' = udel_precip_v501_sum.2016.sum)
 
 rain17 <- aiddata_raw %>%
   select(shapeName, udel_precip_v501_sum.2017.sum) %>%
-  rename('rain17' = udel_precip_v501_sum.2017.sum) %>%
-  mutate(lrain17 = log(rain17))
+  rename('rain17' = udel_precip_v501_sum.2017.sum)
 
 rain <- reduce(list(rain14, rain15, rain16, rain17), left_join, by = 'shapeName')
 
 rain <- rain %>%
-  select(shapeName, lrain14, lrain15, lrain16, lrain17) %>% 
+  select(shapeName, rain14, rain15, rain16, rain17) %>% 
   rename('district' = shapeName)
 
 rm(rain14, rain15, rain16, rain17)
@@ -511,33 +499,29 @@ rm(rain14, rain15, rain16, rain17)
 spend14 <- spend14_raw %>%
     filter(Program %in% c('SCHOOL CONSTRUCTION PROGRAMME','Education','SECONDARY SCHOOL CONSTRUCTION')) %>%
     group_by(Vote) %>%
-    summarise(value = sum(`Approved Budget` , na.rm = TRUE)) %>%
-    mutate(lspend14 = log(value)) %>% 
-    select(Vote, lspend14) %>% 
+    summarise(spend14 = sum(`Approved Budget` , na.rm = TRUE)) %>%
+    select(Vote, spend14) %>% 
     rename('district' = Vote)
 
 spend15 <- spend15_raw %>%
     filter(Program %in% c('SCHOOL CONSTRUCTION PROGRAMME','Education','SECONDARY SCHOOL CONSTRUCTION')) %>%
     group_by(Vote) %>%
-    summarise(value = sum(`Approved Budget` , na.rm = TRUE)) %>%
-    mutate(lspend15 = log(value)) %>% 
-    select(Vote, lspend15) %>% 
+    summarise(spend15 = sum(`Approved Budget` , na.rm = TRUE)) %>%
+    select(Vote, spend15) %>% 
     rename('district' = Vote)
 
 spend16 <- spend16_raw %>%
     filter(Program %in% c('Education Development','Education')) %>%
     group_by(Vote) %>%
-    summarise(value = sum(`Approved Budget` , na.rm = TRUE)) %>%
-    mutate(lspend16 = log(value)) %>% 
-    select(Vote, lspend16) %>% 
+    summarise(spend16 = sum(`Approved Budget` , na.rm = TRUE)) %>%
+    select(Vote, spend16) %>% 
     rename('district' = Vote)
 
 spend17 <- spend17_raw %>%
     filter(Program %in% c('Education','Education Development')) %>%
     group_by(Vote) %>%
-    summarise(value = sum(`Amount` , na.rm = TRUE)) %>%
-    mutate(lspend17 = log(value)) %>% 
-    select(Vote, lspend17) %>% 
+    summarise(spend17 = sum(`Amount` , na.rm = TRUE)) %>%
+    select(Vote, spend17) %>% 
     rename('district' = Vote)
 
 spend <- reduce(list(spend14, spend15, spend16), left_join, by = 'district')

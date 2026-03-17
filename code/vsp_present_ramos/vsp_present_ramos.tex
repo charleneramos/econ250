@@ -1,0 +1,68 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+
+\title{Does Foreign Aid Improve Education Outcomes?\\Evidence from Uganda}
+\author{Ramonjamanana \& Ramos}
+\date{VSP Presentation}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Motivation}
+Cross-country findings on aid and education are mixed.  
+Aid can stabilize budgets and expand schooling, but it may also distort incentives, be fragmented, or poorly allocated.  
+Most evidence is national or project-level; little is known at the subnational level.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Research Question}
+Does foreign aid improve district-level education outcomes in Uganda?  
+We study whether aid received between 2014--2017 affects changes in primary and secondary gross enrollment rates.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Background}
+Uganda is a major aid recipient with wide differences in district education performance.  
+Aid flows are uneven and often imprecisely geocoded.  
+Potential biases: reverse causality, simultaneity, and measurement error.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Data}
+District GER from Uganda’s Ministry of Education.  
+Geocoded aid from AidData’s Aid Management Platform.  
+Nighttime lights, population density, and rainfall as controls.  
+Final panel: 122 districts, 2014--2017.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}{Preview of Approach}
+OLS with lagged aid and first differences.  
+Bartik shift-share IV exploiting donor-budget shocks interacted with historical exposure.
+\end{frame}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (B) 3.5-MINUTE PROSE SCRIPT FOR PRESENTATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% --- BEGIN SCRIPT ---
+
+In this project, we study whether foreign aid meaningfully improves education outcomes within Uganda. The broader literature on aid and schooling provides a compelling but contradictory starting point. A number of influential papers argue that aid helps stabilize government budgets and maintain education spending, especially during economic downturns. Duflo’s work in Indonesia, for example, shows that externally financed school construction led to large gains in enrollment and years of schooling. At the same time, several studies warn that aid can be misallocated, poorly coordinated, or even distort domestic fiscal behavior. When governments anticipate donor financing, they may shift their own resources away from education, thereby weakening overall effectiveness. 
+
+These conflicting findings point to an important gap. Much of the existing evidence is either highly aggregated—comparing countries to one another—or highly localized, focusing on specific programs. Very few studies examine what happens across districts within a country, even though aid is delivered spatially and education systems vary enormously at the local level. Our project aims to fill that gap by using subnational data that allow us to observe how aid flows into different parts of Uganda and how those flows relate to changes in schooling outcomes.
+
+This leads to our central research question: does foreign aid improve district-level education outcomes in Uganda? More concretely, we examine whether aid received between 2014 and 2017 affects year-to-year changes in primary and secondary gross enrollment rates. Uganda is a useful setting for this question. It receives substantial donor support across many sectors, and education conditions differ widely across districts due to population pressures, infrastructure, and climate-related shocks. At the same time, the aid data themselves present challenges. Many projects are only coarsely geocoded and often span multiple districts, creating potential measurement error. Moreover, reverse causality is a concern—districts with worsening education performance may receive more aid—and unobserved district characteristics could influence both aid decisions and education outcomes.
+
+To address these challenges, we assemble a district-level panel that combines four main data sources. First, the Ministry of Education provides annual district-level primary and secondary gross enrollment rates. Second, the AidData Aid Management Platform provides geocoded aid flows, which we allocate across districts by evenly splitting multi-district projects. Third, nighttime lights from VIIRS serve as a proxy for local economic activity and development. Fourth, we incorporate population density from WorldPop and rainfall from the University of Delaware as demographic and climatic controls. Bringing these together yields a panel of 122 districts over the years 2014 through 2017—the period for which both the aid and education data overlap.
+
+With these data in hand, we estimate the relationship using two complementary strategies. The first uses ordinary least squares with lagged aid and first-difference estimation to remove time-invariant district characteristics. The second uses a Bartik-style shift–share instrumental variable design that interacts donor-country government expenditure shocks with each district’s historical exposure to different donors. This instrument generates plausibly exogenous variation in aid driven by external donor budget cycles rather than local Ugandan conditions.
+
+This framework positions us to speak to whether aid meaningfully shifts short-run schooling outcomes across districts and offers a more granular perspective than existing national-level studies.
+
+% --- END SCRIPT ---
