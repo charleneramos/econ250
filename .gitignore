@@ -2,7 +2,10 @@ data/
 references/
 
 *.dta
+*.dat
 *.csv
 *.xlsx
+*.RData
 *.zip
-
+*.Rhistory
+*.DS_Store
